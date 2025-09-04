@@ -1,3 +1,16 @@
+
+export const MY_PROFILE = {
+  NAME: 'ARslan Ahmad',
+  GITHUB_USERNAME: "arslan-ahm",
+  GITHUB_PROFILE: "https://github.com/arslan-ahm",
+  LINKEDIN_USERNAME: "arslan-ahmad-dev",
+  LINKEDIN_PROFILE: "https://www.linkedin.com/in/arslan-ahmad-dev/",
+  LEETCODE_USERNAME: "ARslan_",
+  LEETCODE_PROFILE: "https://leetcode.com/u/ARslan_/",
+  EMAIL_ID: "mycomputer2214@example.com",
+}
+
+
 export const PROJECTS_LIST = [
   {
     id: 'project-box2',

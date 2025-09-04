@@ -140,7 +140,7 @@
                 this={link.icon} 
                 size={24} 
                 strokeWidth={1.5}
-                stroke="white"
+                color="white"
                 class="SocialHandle"
               />
             </a>

@@ -3,7 +3,7 @@
   import Heading from '~/components/Heading/Heading.svelte';
   import Text from '~/components/Text/Text.svelte';
   import Button from '~/components/Button/Button.svelte';
-  import config from '~/config.json';
+  import { MY_PROFILE } from '~/constants/profile';
 
   let mounted = false;
   let form: HTMLFormElement;
@@ -36,18 +36,18 @@
   const socialLinks = [
     {
       name: 'GitHub',
-      url: `https://github.com/${config.github}`,
+      url: `https://github.com/${MY_PROFILE.GITHUB_USERNAME}`,
       icon: 'github'
     },
     {
-      name: 'Figma',
-      url: `https://figma.com/${config.figma}`,
-      icon: 'figma'
+      name: 'LinkedIn',
+      url: `https://www.linkedin.com/in/${MY_PROFILE.LINKEDIN_USERNAME}`,
+      icon: 'linkedin'
     },
     {
-      name: 'Bluesky',
-      url: `https://bsky.app/profile/${config.bluesky}`,
-      icon: 'bluesky'
+      name: 'LeetCode',
+      url: `https://leetcode.com/${MY_PROFILE.LEETCODE_USERNAME}`,
+      icon: 'leetcode'
     }
   ];
 </script>

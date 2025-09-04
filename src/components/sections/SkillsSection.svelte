@@ -148,7 +148,11 @@
   font-size: 1.6rem;
   backdrop-filter: blur(5px);
   font-weight: 500;
-  color: #fff;
+  color: var(--color-white);
+}
+
+.light-mode .tooltip {
+  color: var(--color-black);
 }
 
 /* Responsive styles */
