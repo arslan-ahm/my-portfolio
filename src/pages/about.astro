@@ -1,0 +1,21 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Navbar from '~/components/Navbar/Navbar.svelte';
+import AboutSection from '~/components/sections/AboutSection.svelte';
+import ContactSection from '~/components/sections/ContactSection.svelte';
+import Footer from '~/components/Footer/Footer.svelte';
+---
+
+<BaseLayout 
+  title="About — Arslan Ahmad"
+  description="Learn more about Arslan Ahmad, a passionate developer with expertise in web development, mobile apps, blockchain, and more."
+>
+  <Navbar client:load />
+  
+  <main class="pt-24">
+    <AboutSection client:load />
+    <ContactSection client:load />
+  </main>
+
+  <Footer />
+</BaseLayout>

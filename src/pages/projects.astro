@@ -1,0 +1,46 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Navbar from '~/components/Navbar/Navbar.svelte';
+import Heading from '~/components/Heading/Heading.svelte';
+import Text from '~/components/Text/Text.svelte';
+import ProjectCard from '~/components/ProjectCard/ProjectCard.svelte';
+import Footer from '~/components/Footer/Footer.svelte';
+import { projects } from '~/content/projects';
+---
+
+<BaseLayout 
+  title="Projects — Arslan Ahmad"
+  description="A showcase of my recent projects including web applications, mobile apps, and blockchain solutions."
+>
+  <Navbar client:load />
+  
+  <main class="pt-24">
+    <!-- Header Section -->
+    <section class="py-16 bg-background">
+      <div class="container mx-auto px-outer">
+        <div class="max-w-4xl mx-auto text-center">
+          <Heading level={1} size="h1" className="mb-6">
+            My Projects
+          </Heading>
+          <Text size="body-l" className="max-w-2xl mx-auto text-textBody">
+            A collection of projects I've worked on, ranging from web applications and mobile apps 
+            to blockchain solutions and creative experiments.
+          </Text>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="py-16 bg-white/5">
+      <div class="container mx-auto px-outer">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <ProjectCard project={project} index={index} client:load />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
