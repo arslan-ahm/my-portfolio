@@ -21,40 +21,16 @@
     });
   });
   
-  function toggleSettings() {
-    isSettingsOpen = !isSettingsOpen;
-    const container = document.getElementById('setting-container');
-    const visualContainer = document.getElementById('visualmodetogglebuttoncontainer');
-    const soundContainer = document.getElementById('soundtogglebuttoncontainer');
-    
-    if (container) {
-      container.classList.toggle('settingactivate');
-    }
-    if (visualContainer) {
-      visualContainer.classList.toggle('visualmodeshow');
-    }
-    if (soundContainer) {
-      soundContainer.classList.toggle('soundmodeshow');
-    }
+  // Reactive statements for functionality
+  $: if (typeof document !== 'undefined') {
+    document.body.classList.toggle('light-mode', isLightMode);
+    document.querySelectorAll('.needtobeinvert').forEach(el => el.classList.toggle('invertapplied', isLightMode));
   }
-  
-  function toggleLightMode() {
-    isLightMode = !isLightMode;
-    document.body.classList.toggle('light-mode');
-    const elements = document.querySelectorAll('.needtobeinvert');
-    elements.forEach(element => {
-      element.classList.toggle('invertapplied');
-    });
-  }
-  
-  function toggleSound() {
-    isSoundOn = !isSoundOn;
-    if (audio) {
-      if (isSoundOn) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
+  $: if (typeof document !== 'undefined' && audio) {
+    if (isSoundOn) {
+      audio.play().catch(() => {});
+    } else {
+      audio.pause();
     }
   }
 </script>
@@ -143,12 +119,11 @@
         </button>
       </a>
       
-      <div class="setting-container" id="setting-container">
+      <div class="setting-container" id="setting-container" class:settingactivate={isSettingsOpen}>
         <input
           type="checkbox"
           id="switchforsetting"
           bind:checked={isSettingsOpen}
-          on:change={toggleSettings}
         />
 
         <label
@@ -161,12 +136,12 @@
         <div
           class="visualmodetogglebuttoncontainer"
           id="visualmodetogglebuttoncontainer"
+          class:visualmodeshow={isSettingsOpen}
         >
           <input
             type="checkbox"
             id="switchforvisualmode"
             bind:checked={isLightMode}
-            on:change={toggleLightMode}
           />
           <label
             for="switchforvisualmode"
@@ -178,12 +153,12 @@
         <div
           class="soundtogglebuttoncontainer"
           id="soundtogglebuttoncontainer"
+          class:soundmodeshow={isSettingsOpen}
         >
           <input
             type="checkbox"
             id="switchforsound"
             bind:checked={isSoundOn}
-            on:change={toggleSound}
           />
           <label
             for="switchforsound"
@@ -421,30 +396,30 @@
   align-items: center;
   justify-content: center;
   width: fit-content;
-  transition-duration: .3s;
-  transform: translate(-50px) scale(0);
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .visualmodeshow {
-  transition-duration: .3s;
-  transform: translate(0) scale(1);
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .soundtogglebuttoncontainer {
   align-items: center;
   width: fit-content;
-  transition-duration: .3s;
+  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
   height: fit-content;
   display: flex;
   justify-content: center;
-  transform: translate(-130px) scale(0);
+  opacity: 0;
+  transform: translateX(-50px);
 }
 
 .soundmodeshow {
-  transition-delay: .1s;
-  transition-duration: .5s;
-  display: inline-block;
-  transform: translate(0) scale(1);
+  opacity: 1;
+  transform: translateX(0);
 }
 
 #switchforsetting,

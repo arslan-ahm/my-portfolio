@@ -61,4 +61,6 @@ export const FONTS = {
   ].join(', '),
 } as const;
 
+export const AUTHOR = "ARslan Ahmad";
+
 export type Theme = keyof typeof THEMES;

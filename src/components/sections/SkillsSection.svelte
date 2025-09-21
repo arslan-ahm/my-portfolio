@@ -1,25 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  
-  const techStack = [
-    { name: 'HTML', logo: '/src/png/htmllogo.png', tooltip: 'HTML' },
-    { name: 'CSS', logo: '/src/png/csslogo.png', tooltip: 'CSS' },
-    { name: 'JavaScript', logo: '/src/png/jslogo.png', tooltip: 'JS' },
-    { name: 'Bootstrap', logo: '/src/png/bootstraplogo.png', tooltip: 'BOOTSTRAP' },
-    { name: 'React', logo: '/src/png/reactlogo.png', tooltip: 'REACTJS' },
-    { name: 'Next.js', logo: '/src/png/nextlogo.png', tooltip: 'NEXTJS' },
-    { name: 'Node.js', logo: '/src/png/node.png', tooltip: 'NODEJS' },
-    { name: 'Astro', logo: '/src/png/astro.png', tooltip: 'ASTRO' },
-    { name: 'GitHub', logo: '/src/png/githublogo.png', tooltip: 'GITHUB', needInvert: true },
-    { name: 'Git', logo: '/src/png/gitlogo.png', tooltip: 'GIT' },
-    { name: 'TinaCMS', logo: '/src/png/tinacms.png', tooltip: 'TINACMS' },
-    { name: 'Contentful', logo: '/src/png/contentfulcms.png', tooltip: 'CONTENTFUL' },
-    { name: 'C', logo: '/src/png/clogo.png', tooltip: 'C' },
-    { name: 'C++', logo: '/src/png/cpplogo.png', tooltip: 'C++' },
-    { name: 'Photoshop', logo: '/src/png/pslogo.png', tooltip: 'ADOBE PS' },
-    { name: 'Figma', logo: '/src/png/figmalogo.png', tooltip: 'FIGMA' },
-    { name: 'Illustrator', logo: '/src/png/ailogo.png', tooltip: 'ADOBE AI' }
-  ];
+  import { TECH_STACKS_LIST } from "~/constants/profile";
 </script>
 
 <section class="skills-section-container" id="skills">
@@ -43,7 +23,7 @@
         Tech Stack
       </h3>
       <ul class="tech-stack-wrapper">
-        {#each techStack as tech}
+        {#each TECH_STACKS_LIST as tech}
           <li class="tech-stack-box" data-aos="fade-up">
             <img
               src={tech.logo}

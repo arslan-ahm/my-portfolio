@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { IMGS } from '~/constants/assets';
   
   let isSettingsOpen = false;
   let isLightMode = false;
@@ -57,7 +58,7 @@
   }
   
   function handleLogoHover() {
-    const logo = document.querySelector('.logo');
+    const logo = document.querySelector<HTMLElement>('.logo');
     if (logo) {
       logo.style.transform = 'translateY(200px)';
       logo.style.transitionDuration = '1s';
@@ -65,7 +66,7 @@
   }
   
   function handleLogoLeave() {
-    const logo = document.querySelector('.logo');
+    const logo = document.querySelector<HTMLElement>('.logo');
     if (logo) {
       logo.style.transform = 'translateY(0)';
       logo.style.transitionDuration = '1s';
@@ -92,7 +93,7 @@
     >
       <div class="logo-top">
         <img
-          src="/src/png/nav-avatar.png"
+          src={IMGS.NAVBAR_AVATAR}
           alt="animation-head"
           id="nav-avatar"
         />
@@ -108,6 +109,17 @@
     </div>
     <div class="navbar-tabs" id="navbar-tabs">
       <ul class="navbar-tabs-ul">
+        <!-- {#each NAVBAR_LINKS as link}
+          <li
+            class="{link.name.toLowerCase()} navbar-tabs-li"
+            data-aos="fade-down"
+            data-aos-delay={link.delay}
+          >
+            <a href={link.href} aria-label="{link.name} menu button">
+              &#60;/{link.name}&#62;
+            </a>
+          </li>
+        {/each} -->
         <li
           class="home activeThistab navbar-tabs-li"
           data-aos="fade-down"
