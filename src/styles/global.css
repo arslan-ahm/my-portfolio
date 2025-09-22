@@ -139,7 +139,7 @@ body {
     align-items: center;
     z-index: 99999;
     filter: invert(1);
-    background-image: url(/src/svg/Pulse-0.4s-200px.svg);
+    background-image: url(/src/svg/pulse-loading.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 10%;

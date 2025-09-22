@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { AUDIO } from '~/constants/assets';
 
   let isPlaying = false;
   let audioElement: HTMLAudioElement;
@@ -17,7 +18,7 @@
 
   onMount(() => {
     // Create audio element
-    audioElement = new Audio('/src/assets/mp3/background-music.mp3');
+    audioElement = new Audio(AUDIO.BACKGROUND_MUSIC);
     audioElement.loop = true;
     audioElement.volume = 0.3;
 

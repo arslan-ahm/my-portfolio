@@ -1,10 +1,10 @@
-export const projects = [
+export const PROJECT_SECTION_PROJECTS = [
   {
     id: 'slice',
     title: 'Biomedical Image Collaboration',
     description: 'A platform for biomedical educators and learners to annotate digital slides together.',
-    image: '/src/assets/slice-app.jpg',
-    imagePlaceholder: '/src/assets/slice-app-placeholder.jpg',
+    image: '/assets/assets/slice-app.jpg',
+    imagePlaceholder: '/assets/assets/slice-app-placeholder.jpg',
     imageAlt: 'The Slice web application',
     technologies: ['React', 'Node.js', 'WebGL', 'Canvas API'],
     roles: ['User Research', 'UX Design', 'Interface Design'],
@@ -16,8 +16,8 @@ export const projects = [
     id: 'gamestack',
     title: 'GameStack',
     description: 'A personal dashboard for gamers to track their game library across platforms.',
-    image: '/src/assets/gamestack-list.jpg',
-    imagePlaceholder: '/src/assets/gamestack-list-placeholder.jpg',
+    image: '/assets/assets/gamestack-list.jpg',
+    imagePlaceholder: '/assets/assets/gamestack-list-placeholder.jpg',
     imageAlt: 'The GameStack web application',
     technologies: ['React', 'Node.js', 'PostgreSQL', 'Express'],
     roles: ['Full Stack Development', 'UI Design', 'API Design'],
@@ -29,8 +29,8 @@ export const projects = [
     id: 'volkihar-knight',
     title: 'Volkihar Knight',
     description: 'A 3D armor set for The Elder Scrolls V: Skyrim with custom textures and models.',
-    image: '/src/assets/volkihar-knight.jpg',
-    imagePlaceholder: '/src/assets/volkihar-knight-placeholder.jpg',
+    image: '/assets/assets/volkihar-knight.jpg',
+    imagePlaceholder: '/assets/assets/volkihar-knight-placeholder.jpg',
     imageAlt: 'The Volkihar Knight armor set',
     technologies: ['3D Modeling', 'Texture Painting', 'Game Modding'],
     roles: ['3D Artist', 'Texture Artist', 'Game Modder'],
@@ -42,8 +42,8 @@ export const projects = [
     id: 'smart-sparrow',
     title: 'Smart Sparrow',
     description: 'Educational platform for creating adaptive learning experiences.',
-    image: '/src/assets/smart-sparrow.jpg',
-    imagePlaceholder: '/src/assets/smart-sparrow-placeholder.jpg',
+    image: '/assets/assets/smart-sparrow.jpg',
+    imagePlaceholder: '/assets/assets/smart-sparrow-placeholder.jpg',
     imageAlt: 'Smart Sparrow platform interface',
     technologies: ['React', 'TypeScript', 'GraphQL', 'AWS'],
     roles: ['Frontend Development', 'UI/UX Design', 'Technical Architecture'],
@@ -51,4 +51,4 @@ export const projects = [
     url: '#',
     repo: '#',
   },
-] as const;
+];

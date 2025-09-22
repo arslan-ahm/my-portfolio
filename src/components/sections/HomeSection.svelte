@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { HERO_SECTION_ANIMATED_TEXT } from '~/constants/pages';
   
   let isSettingsOpen = false;
   let isLightMode = false;
@@ -21,40 +22,16 @@
     });
   });
   
-  function toggleSettings() {
-    isSettingsOpen = !isSettingsOpen;
-    const container = document.getElementById('setting-container');
-    const visualContainer = document.getElementById('visualmodetogglebuttoncontainer');
-    const soundContainer = document.getElementById('soundtogglebuttoncontainer');
-    
-    if (container) {
-      container.classList.toggle('settingactivate');
-    }
-    if (visualContainer) {
-      visualContainer.classList.toggle('visualmodeshow');
-    }
-    if (soundContainer) {
-      soundContainer.classList.toggle('soundmodeshow');
-    }
+  // Reactive statements for functionality
+  $: if (typeof document !== 'undefined') {
+    document.body.classList.toggle('light-mode', isLightMode);
+    document.querySelectorAll('.needtobeinvert').forEach(el => el.classList.toggle('invertapplied', isLightMode));
   }
-  
-  function toggleLightMode() {
-    isLightMode = !isLightMode;
-    document.body.classList.toggle('light-mode');
-    const elements = document.querySelectorAll('.needtobeinvert');
-    elements.forEach(element => {
-      element.classList.toggle('invertapplied');
-    });
-  }
-  
-  function toggleSound() {
-    isSoundOn = !isSoundOn;
-    if (audio) {
-      if (isSoundOn) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
+  $: if (typeof document !== 'undefined' && audio) {
+    if (isSoundOn) {
+      audio.play().catch(() => {});
+    } else {
+      audio.pause();
     }
   }
 </script>
@@ -64,68 +41,33 @@
 
   <div class="text-content">
     <article id="hello-friend" data-aos="fade-up" data-aos-delay="0">
-      <p class="jello">H</p>
-      <p class="jello">e</p>
-      <p class="jello">l</p>
-      <p class="jello">l</p>
-      <p class="jello">o</p>
-      <p class="jello">(</p>
-      <p class="jello">)</p>
-      <p class="jello">;</p>
-      &nbsp;
-      <p class="jello">I</p>
-      <p class="jello">'</p>
-      <p class="jello">m</p>
+      {#each HERO_SECTION_ANIMATED_TEXT.GREET_TEXT.split('') as char}
+        {#if char === ' '}
+          &nbsp;
+        {:else}
+          <p class="jello">{char}</p>
+        {/if}
+      {/each}
     </article>
     
     <article id="name" data-aos="fade-up" data-aos-delay="200">
-      <p class="jello">A</p>
-      <p class="jello">R</p>
-      <p class="jello">s</p>
-      <p class="jello">l</p>
-      <p class="jello">a</p>
-      <p class="jello">n</p>
-      &nbsp;
-      <p class="jello">A</p>
-      <p class="jello">h</p>
-      <p class="jello">m</p>
-      <p class="jello">a</p>
-      <p class="jello">d</p>
-      <p class="jello">.</p>
+      {#each HERO_SECTION_ANIMATED_TEXT.NAME_TEXT.split('') as char}
+        {#if char === ' '}
+          &nbsp;
+        {:else}
+          <p class="jello">{char}</p>
+        {/if}
+      {/each}
     </article>
 
     <article id="work" data-aos="fade-up" data-aos-delay="400">
-      <div>
-        <p class="jello">I</p>
-      </div>
-      <div>
-        <p class="jello">d</p>
-        <p class="jello">e</p>
-        <p class="jello">s</p>
-        <p class="jello">i</p>
-        <p class="jello">g</p>
-        <p class="jello">n</p>
-      </div>
-      <div>
-        <p class="jello">&</p>
-      </div>
-      <div>
-        <p class="jello">c</p>
-        <p class="jello">o</p>
-        <p class="jello">d</p>
-        <p class="jello">e</p>
-      </div>
-      <div>
-        <p class="jello">w</p>
-        <p class="jello">e</p>
-        <p class="jello">b</p>
-        <p class="jello">s</p>
-        <p class="jello">i</p>
-        <p class="jello">t</p>
-        <p class="jello">e</p>
-        <p class="jello">s</p>
-        <p class="jello">.</p>
-      </div>
+      {#each HERO_SECTION_ANIMATED_TEXT.WORK_TEXT.split(' ') as group}
+        <div>
+          {#each group.split('') as char}
+            <p class="jello">{char}</p>
+          {/each}
+        </div>
+      {/each}
     </article>
     
     <p id="info-para" data-aos="fade-up" data-aos-delay="600">
@@ -143,12 +85,11 @@
         </button>
       </a>
       
-      <div class="setting-container" id="setting-container">
+      <div class="setting-container" id="setting-container" class:settingactivate={isSettingsOpen}>
         <input
           type="checkbox"
           id="switchforsetting"
           bind:checked={isSettingsOpen}
-          on:change={toggleSettings}
         />
 
         <label
@@ -161,12 +102,12 @@
         <div
           class="visualmodetogglebuttoncontainer"
           id="visualmodetogglebuttoncontainer"
+          class:visualmodeshow={isSettingsOpen}
         >
           <input
             type="checkbox"
             id="switchforvisualmode"
             bind:checked={isLightMode}
-            on:change={toggleLightMode}
           />
           <label
             for="switchforvisualmode"
@@ -178,12 +119,12 @@
         <div
           class="soundtogglebuttoncontainer"
           id="soundtogglebuttoncontainer"
+          class:soundmodeshow={isSettingsOpen}
         >
           <input
             type="checkbox"
             id="switchforsound"
             bind:checked={isSoundOn}
-            on:change={toggleSound}
           />
           <label
             for="switchforsound"
@@ -293,13 +234,18 @@
 }
 
 .jello:hover {
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-color: #03e6ff;
+  color: #03e6ff;
   animation: jello-vertical 0.9s both;
   position: relative;
   z-index: 10;
+}
+
+#name .jello:hover {
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: #03e6ff;
+  background-clip: initial;
+  color: #03e6ff;
 }
 
 @keyframes jello-vertical {
@@ -421,30 +367,34 @@
   align-items: center;
   justify-content: center;
   width: fit-content;
-  transition-duration: .3s;
-  transform: translate(-50px) scale(0);
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
 }
 
 .visualmodeshow {
-  transition-duration: .3s;
-  transform: translate(0) scale(1);
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
 }
 
 .soundtogglebuttoncontainer {
   align-items: center;
   width: fit-content;
-  transition-duration: .3s;
+  transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
   height: fit-content;
   display: flex;
   justify-content: center;
-  transform: translate(-130px) scale(0);
+  opacity: 0;
+  transform: translateX(-50px);
+  pointer-events: none;
 }
 
 .soundmodeshow {
-  transition-delay: .1s;
-  transition-duration: .5s;
-  display: inline-block;
-  transform: translate(0) scale(1);
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
 }
 
 #switchforsetting,

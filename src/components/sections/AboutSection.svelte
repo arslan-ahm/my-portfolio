@@ -1,10 +1,9 @@
 <script lang="ts">
-  // @ts-ignore
-  import config from '../../config.json';
+  import { AUTHOR } from '~/constants';
+  import { IMGS } from '~/constants/assets';
   
   function openURL() {
-    var url = "/src/pdf/Arslan_Resume.pdf";
-    window.open(url, "_blank");
+    window.open(IMGS.RESUME_URL, "_blank");
   }
 </script>
 
@@ -23,7 +22,7 @@
     <div class="info-dp-section">
       <div class="about-info">
         <p>
-          Hi! My name is {config.name}. I'm a web developer and digital visual
+          Hi! My name is {AUTHOR}. I'm a web developer and digital visual
           artist. I love creating things that exist on the internet. My
           interest in web development started in 2021 when I decided to
           upload my digital concept arts online.
@@ -55,8 +54,8 @@
 
       <div class="dp" data-aos="fade-up">
         <img
-          src="/src/png/my_pic_2.jpg"
-          alt="Arslan's Image"
+          src={IMGS.ABOUT_SECTION_DP}
+          alt="Arslan - web developer"
         />
       </div>
     </div>

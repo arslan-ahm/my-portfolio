@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
-import Navbar from '~/components/Navbar/Navbar.svelte';
+import Navbar from '~/components/Navbar.svelte';
 import Heading from '~/components/Heading/Heading.svelte';
 import Text from '~/components/Text/Text.svelte';
 import ProjectCard from '~/components/ProjectCard/ProjectCard.svelte';
 import Footer from '~/components/Footer/Footer.svelte';
-import { projects } from '~/content/projects';
+import { PROJECT_SECTION_PROJECTS } from '~/content/projects';
 ---
 
 <BaseLayout 
@@ -34,7 +34,7 @@ import { projects } from '~/content/projects';
     <section class="py-16 bg-white/5">
       <div class="container mx-auto px-outer">
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {PROJECT_SECTION_PROJECTS.map((project, index) => (
             <ProjectCard project={project} index={index} client:load />
           ))}
         </div>
